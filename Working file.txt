@@ -1,0 +1,92 @@
+Intro:
+
+- get a cool theme from bootwatch.com and download its bootstrap file.
+
+- drag and drop it in two places:
+1- in wwwroot>css.
+2- in the Views>Shared>_Layout.cshtml in the header instead of the bootstrap main link.  
+
+------------------------------------------
+
+Add EF and DbContext:
+
+- use nuget to install Entityframework, sql server and tools(to add migrations through console).
+
+- Add new class (ApplicationDbContext) to connect the app to database.
+
+- Register the dbcontext in program.cs. 
+
+------------------------------------------
+
+Database Diagram:
+
+- 
+------------------------------------------
+
+Add Domain Models:
+
+- Create four classes representing four tables in db.
+
+- override the OnModelCreating function to tell the db that GameDevice has two primary keys.
+
+- Create a DbSet of each type in the DbContext class.
+
+- open Nuget Console and use the command add-migration InitialCreate (Initial migration).
+
+-----------------------------------------------
+
+Seeding(Devices and Categories only):
+
+- we wont use interfaces.
+
+- remove-migration to assign initial values (to Devices and Categories only) in the overriden OnModelCreating function.
+
+- update-database (now the database on server).
+
+---------------------------------------------------
+
+Add Games Controller:
+
+- Create a new GamesController in folder Controllers.
+
+---------------------------------------------------
+
+Add Bootstrap Icons:
+
+- right click on wwwroot and add client-side library and choose specific files then fonts, use the file libman.json to update the installed packages later.
+
+- drag and drop the bootstrap-icons.min.css in _Layout header.
+
+---------------------------------------------------
+
+Add Form ViewModel:
+
+- Create ViewModels folder.
+
+- Create CreateGameFormViewModel class.
+
+- Inside this class every input going to be in the form should be represented as prop.
+
+---------------------------------------------------
+
+Add Form Inputs:
+
+- go to Views > _ViewImports and add @using UGamer.ViewModels.
+
+- and in Create View use @model CreateGameFormViewModel.
+
+- fill the select list with categories in the database.
+
+- enctype="multipart/form-data" to tell the form that we have a file included in it (uploaded image).
+
+---------------------------------------------------
+
+Server Side Validation:
+
+- 
+
+---------------------------------------------------
+
+Services:
+
+- service will deal with database and controller talks with the service, so service is intermediate between controller and database.

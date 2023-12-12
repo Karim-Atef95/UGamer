@@ -1,0 +1,66 @@
+﻿@model IEnumerable<Game>
+@{
+	ViewData["Title"] = "Games";
+}
+<a class="btn btn-primary" asp-action="Create" asp-controller="Games">
+	<i class="bi bi-plus-circle"></i>
+	Add Game
+</a>
+
+@if(!Model.Any())
+{
+    <div class="alert alert-warning">
+        <h4 class="alert-heading">No Games Found!</h4>
+        <p class="mb-0">No games Added yet!</p>
+    </div>
+}
+else 
+ {
+   <div class="mt-5">
+       <table class="table table-bordered border-primary">
+           <tbody>
+               @foreach(var game in Model)
+                {
+                    <tr class="border-1 border-secondary">
+                        <td class="ugamer-table-cell d-flex justify-content-between">
+                            <div class="d-flex">
+                                <div>
+                                    <img
+                                        src="@($"{FileSettings.ImagesPath}/{game.Cover}")"
+                                        alt="@game.Name"
+                                        style="max-width:90px"
+                                        />
+                                </div>
+                                <div class="d-flex flex-column ms-1 justify-content-center"
+                                >
+                                    <h4 class="text-light">
+                                        @game.Name
+                                    </h4>
+                                    <h5 class="text-secondary">
+                                        @game.Category.Name
+                                    </h5>
+                                </div>
+                            </div>
+                            <div class="d-flex align-items-center">
+                                <a href="javascript:;"
+                                   class="btn btn-primary rounded rounded-3 me-2 js-delete" 
+                                data-id="@game.Id">
+                                    <i class="bi bi-trash3"></i>
+                                </a>
+                                <a asp-action="Edit" asp-route-id="@game.Id" class="btn btn-info rounded rounded-3 me-2 ">
+                                    <i class="bi bi-pencil-fill"></i>
+                                </a>
+                            </div>
+                        </td>
+
+                    </tr>
+                }
+            </tbody>
+       </table>
+   </div>
+ } 
+ @section Scripts
+ {
+	<script src="~/js/game-delete.js" asp-append-version="true"></script>
+ }
+
